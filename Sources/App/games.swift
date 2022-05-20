@@ -3,17 +3,23 @@ import Foundation
 struct Game: Encodable {
     let name: String
     let path: String
+    let description: String
+}
+
+func getFileContents(file: String, default value: String, at path: URL) -> String {
+    let fileManager = FileManager.default
+    let url = path.appendingPathComponent(file, isDirectory: false);
+    let contents = fileManager.contents(atPath: url.pathComponents.joined(separator: "/"))
+    let strContents = String(data: (contents ?? value.data(using: .utf8)!), encoding: .utf8)!
+    return strContents
 }
 
 func gameInfo(at url: URL) -> Game {
-    let fileManager = FileManager.default
-    let nameURL = url.appendingPathComponent("name", isDirectory: false);
-    let pathURL = url.appendingPathComponent("path", isDirectory: false);
-    let name = fileManager.contents(atPath: nameURL.pathComponents.joined(separator: "/"))
-    let strName = String(data: (name ?? url.lastPathComponent.data(using: .utf8)!), encoding: .utf8)!
-    let path = fileManager.contents(atPath: pathURL.pathComponents.joined(separator: "/"))
-    let strPath = String(data: (path ?? ("/games/" + url.lastPathComponent).data(using: .utf8)!), encoding: .utf8)!
-    return Game(name: strName, path: strPath)
+    Game(
+        name: getFileContents(file: "name", default: url.lastPathComponent, at: url),
+        path: getFileContents(file: "path", default: "/games/" + url.lastPathComponent, at: url),
+        description: getFileContents(file: "description", default: "", at: url)
+    )
 }
 
 func getGames() throws -> [Game] {

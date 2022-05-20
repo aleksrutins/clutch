@@ -36,3 +36,7 @@ div#games a:active {
     background: white;
     color: black;
 }
+
+#games a p {
+    white-space: break-spaces;
+}

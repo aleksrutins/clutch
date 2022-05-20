@@ -11,7 +11,10 @@
     <h1>Select A Game</h1>
     <div id="games">
     #for(game in games):
-    <a href="#(game.path)">#(game.name)</a>
+    <a href="#(game.path)">
+        <h2>#(game.name)</h2>
+        <p>#(game.description)</p>
+    </a>
     #endfor
     </div>
 </body>
