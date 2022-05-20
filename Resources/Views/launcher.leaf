@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="/app.css">
 </head>
 <body>
-    <h1>Games:</h1>
-    <ul>
+    <h1>Games</h1>
+    <ul id="games">
     #for(game in games):
     <li><a href="#(game.path)">#(game.name)</a></li>
     #endfor

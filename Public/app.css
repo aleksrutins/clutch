@@ -1,9 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 html, body {
     width: 100vw;
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgb(255, 245, 226);
-    font-family: Arial, Helvetica, sans-serif;
+    flex-direction: column;
+    background-color: black;
+    color: white;
+    font-family: 'Press Start 2P', Arial, Helvetica, sans-serif;
+}
+
+ul#games {
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    overflow-x: scroll;
+    flex-wrap: none;
+}
+
+ul#games a {
+    display: block;
+    margin: 20px;
+    border-radius: 5px;
+    border: 1px solid white;
+    padding: 10px;
+    color: white;
+}
+
+ul#games a:active {
+    background: white;
+    color: black;
 }
