@@ -11,25 +11,28 @@ html, body {
     color: white;
     font-family: 'Press Start 2P', Arial, Helvetica, sans-serif;
 }
-
-ul#games {
-    display: flex;
-    flex-direction: row;
-    list-style-type: none;
-    overflow-x: scroll;
-    flex-wrap: none;
+h1 {
+    text-align: center;
 }
 
-ul#games a {
-    display: block;
+div#games {
+    overflow: auto;
+    white-space: nowrap;
+    margin: 0;
+    padding: 0;
+    max-width: 100vw;
+}
+div#games a {
+    display: inline-block;
     margin: 20px;
     border-radius: 5px;
     border: 1px solid white;
     padding: 10px;
     color: white;
+    text-decoration: none;
 }
 
-ul#games a:active {
+div#games a:active {
     background: white;
     color: black;
 }
