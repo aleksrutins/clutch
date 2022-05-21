@@ -12,11 +12,8 @@ func routes(_ app: Application) throws {
 
     app.get("games", ":name") { req -> EventLoopFuture<Response> in
         let url = gameUrl(name: req.parameters.get("name")!)
-        print(url)
         let game = gameInfo(at: url)
-        print(game)
         if(game.nativeLauncher != nil) {
-            print(game.nativeLauncher as Any)
             do {
                 try launchGame(script: game.nativeLauncher!, at: url)
             } catch let e {

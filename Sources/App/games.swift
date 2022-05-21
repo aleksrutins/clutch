@@ -11,7 +11,6 @@ func getFileContents(file: String, default otherwise: String?, at path: URL) -> 
     let fileManager = FileManager.default
     let url = path.appendingPathComponent(file, isDirectory: false);
     let contents = fileManager.contents(atPath: url.pathComponents.joined(separator: "/"))
-    print(contents as Any)
     let data = contents ?? otherwise?.data(using: .utf8);
     if(data == nil) {
         return nil;
@@ -31,7 +30,7 @@ func gameInfo(at url: URL) -> Game {
 
 func gameUrl(name: String) -> URL {
     let fileManager = FileManager.default
-    let gamesPath = URL(string: fileManager.currentDirectoryPath + "/")?.appendingPathComponent("games")
+    let gamesPath = URL(string: "file://" + fileManager.currentDirectoryPath + "/")?.appendingPathComponent("games")
     return gamesPath!.appendingPathComponent(name)
 }
 
@@ -40,7 +39,6 @@ func getGames() throws -> [Game] {
     let gamesPath = URL(string: "games", relativeTo: URL(string: fileManager.currentDirectoryPath + "/"))!
     let fileURLs = try fileManager.contentsOfDirectory(at: gamesPath, includingPropertiesForKeys: nil)
     return fileURLs.map { url in
-        print(url)
         return gameInfo(at: url)
     }
 }
