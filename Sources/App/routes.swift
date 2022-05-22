@@ -7,15 +7,15 @@ struct LauncherContext: Encodable {
 
 func routes(_ app: Application) throws {
     app.get { req in
-        req.view.render("launcher", LauncherContext(games: try getGames()))
+        req.view.render("launcher", LauncherContext(games: try Game.all()))
     }
 
     app.get("games", ":name") { req -> EventLoopFuture<Response> in
-        let url = gameUrl(name: req.parameters.get("name")!)
-        let game = gameInfo(at: url)
+        let url = Game.url(of: req.parameters.get("name")!)
+        let game = Game(at: url)
         if(game.nativeLauncher != nil) {
             do {
-                try launchGame(script: game.nativeLauncher!, at: url)
+                try game.launch()
             } catch let e {
                 print(e)
             }
