@@ -2,12 +2,12 @@ import Vapor
 import NIOCore
 
 struct LauncherContext: Encodable {
-    let games: [Game]
+    let games: [Category]
 }
 
 func routes(_ app: Application) throws {
     app.get { req in
-        req.view.render("launcher", LauncherContext(games: try Game.all()))
+        req.view.render("launcher", LauncherContext(games: try Game.allSorted()))
     }
 
     app.get("games", ":name") { req -> EventLoopFuture<Response> in

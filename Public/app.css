@@ -19,6 +19,8 @@ div#games {
     overflow: auto;
     white-space: nowrap;
     display: flex;
+    flex-direction: row;
+    align-items: justify;
     margin: 0;
     padding: 0;
     max-width: 100vw;
@@ -40,4 +42,20 @@ div#games a:active {
 
 #games a p {
     white-space: break-spaces;
+}
+
+.category {
+}
+
+.category h2 {
+    position: sticky;
+    display: inline-block;
+    left: 0px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.category .games {
+    display: flex;
+    flex-direction: row;
 }

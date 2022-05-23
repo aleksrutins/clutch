@@ -5,6 +5,7 @@ struct Game: Encodable {
     let path: String
     let localPath: URL
     let description: String
+    let category: String
     let nativeLauncher: String?
     init(at url: URL) {
         localPath = url
@@ -12,6 +13,7 @@ struct Game: Encodable {
         path = Util.getFileContents(file: "path", default: "/games/" + url.lastPathComponent, at: url)!
         description = Util.getFileContents(file: "description", default: "", at: url)!
         nativeLauncher = Util.getFileContents(file: "native-launcher", default: nil, at: url)
+        category = Util.getFileContents(file: "category", default: "Misc", at: url)!
     }
     static func all() throws -> [Game] {
         let fileManager = FileManager.default
@@ -20,6 +22,9 @@ struct Game: Encodable {
         return fileURLs.map { url in
             return Game(at: url)
         }
+    }
+    static func allSorted() throws -> [Category] {
+        try Category.sort(games: all())
     }
     static func url(of name: String) -> URL {
         let fileManager = FileManager.default
