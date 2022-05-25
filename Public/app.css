@@ -59,3 +59,61 @@ div#games a:active {
     display: flex;
     flex-direction: row;
 }
+
+a#upload {
+    position: fixed;
+    bottom: 10px;
+    right: 20px;
+    color: white;
+}
+
+form input {
+    display: block;
+    background-color: black;
+    border: 1px solid rgb(200, 200, 200);
+    color: white;
+}
+form label {
+    display: block;
+}
+form input + label {
+    margin-top: 15px;
+}
+
+form input:focus {
+    outline: none;
+    border-color: white;
+}
+
+
+.tabs {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.tabs-bar {
+    display: flex;
+    flex-direction: row;
+}
+
+.tabs-bar .tab, button {
+    display: block;
+    cursor: pointer;
+    background-color: transparent;
+    border: 1px solid white;
+    color: white;
+    font-family: inherit;
+}
+
+.tabs-bar .tab.active, button:active {
+    color: black;
+    background-color: white;
+}
+
+.tabs-content {
+    flex: 1;
+    border: 1px solid white;
+    padding: 2px;
+}

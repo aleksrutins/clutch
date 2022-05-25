@@ -9,6 +9,8 @@ func routes(_ app: Application) throws {
     app.get { req in
         req.view.render("launcher", LauncherContext(games: try Game.allSorted()))
     }
+    
+    app.get("upload") { $0.view.render("upload") }
 
     app.get("games", ":name") { req -> EventLoopFuture<Response> in
         let url = Game.url(of: req.parameters.get("name")!)

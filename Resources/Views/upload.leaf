@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload a Game | Clutch Launcher</title>
+    <link rel="stylesheet" href="/app.css">
+    <script src="https://unpkg.com/petite-vue" defer init></script>
+</head>
+<body>
+    <h1>Upload a Game</h1>
+    <form method="post" action="/api/upload">
+        <label for="name">Name</label>
+        <input type="text" name="name">
+        <label for="description">Description</label>
+        <input type="text" name="description">
+        <label>Source</label>
+        <div class="tabs" v-scope="{ activeTab: 'url' }">
+            <input type="hidden" name="submission" :value="activeTab">
+            <div class="tabs-bar">
+                <button type="button" class="tab" :class="{ active: (activeTab == 'url') }" @click="activeTab = 'url'">URL</button>
+                <button type="button" class="tab" :class="{ active: (activeTab == 'files') }" @click="activeTab = 'files'">Files</button>
+                <button type="button" class="tab" :class="{ active: (activeTab == 'native') }" @click="activeTab = 'native'">Native Launcher</button>
+            </div>
+            <div class="tabs-content" v-if="activeTab == 'url'">
+                <label for="url">URL</label>
+                <input type="text" name="url">
+            </div>
+            <div class="tabs-content" v-if="activeTab == 'files'">
+                <input type="file" name="file">
+            </div>
+            <div class="tabs-content" v-if="activeTab == 'native'">
+                <label for="file">Archive</label>
+                <input type="file" name="file">
+                <label for="cmd">Command</label>
+                <input type="text" name="cmd">
+            </div>
+        </div>
+        <button type="submit">Upload</button>
+    </form>
+</body>
+</html>
