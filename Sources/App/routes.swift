@@ -11,6 +11,7 @@ func routes(_ app: Application) throws {
     }
     
     app.get("upload") { $0.view.render("upload") }
+    app.post("api", "upload", use: upload(req:))
 
     app.get("games", ":name") { req -> EventLoopFuture<Response> in
         let url = Game.url(of: req.parameters.get("name")!)
