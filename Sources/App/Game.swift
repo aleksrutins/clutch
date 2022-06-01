@@ -29,6 +29,6 @@ struct Game: Encodable {
     static func url(of name: String) -> URL {
         let fileManager = FileManager.default
         let gamesPath = URL(string: "file://" + fileManager.currentDirectoryPath + "/")?.appendingPathComponent("games")
-        return gamesPath!.appendingPathComponent(name)
+        return gamesPath!.appendingPathComponent(name, isDirectory: true)
     }
 }

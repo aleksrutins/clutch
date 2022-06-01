@@ -10,13 +10,15 @@ let package = Package(
         // 💧 A server-side Swift web framework.
         .package(url: "https://github.com/vapor/vapor.git", from: "4.0.0"),
         .package(url: "https://github.com/vapor/leaf.git", from: "4.0.0"),
+        .package(url: "https://github.com/marmelroy/Zip.git", from: "2.1.2"),
     ],
     targets: [
         .target(
             name: "App",
             dependencies: [
                 .product(name: "Vapor", package: "vapor"),
-                .product(name: "Leaf", package: "leaf")
+                .product(name: "Leaf", package: "leaf"),
+                .product(name: "Zip", package: "Zip")
             ],
             swiftSettings: [
                 // Enable better optimizations when building in Release configuration. Despite the use of
