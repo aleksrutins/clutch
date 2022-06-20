@@ -20,6 +20,7 @@ func upload(req: Request) throws -> Response {
         let zipfilePath = path.appendingPathExtension("zip")
         if FileManager.default.createFile(atPath: (zipfilePath as NSURL).resourceSpecifier!.decodeUrl()!, contents: Data(buffer: input.file!.data)) {
             try Zip.unzipFile(zipfilePath, destination: path, overwrite: true, password: nil)
+            try FileManager.default.removeItem(at: zipfilePath)
         } else {
             print("Failed to write zipfile")
         }
